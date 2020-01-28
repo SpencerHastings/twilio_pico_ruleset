@@ -25,7 +25,7 @@ ruleset twilio_m {
         response = http:get(url)
     
     
-        response{"content"}.decode();
+        response{"content"}.decode().klog("message log: ");
         }
   }
 }
