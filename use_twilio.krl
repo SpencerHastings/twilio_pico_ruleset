@@ -17,9 +17,11 @@ ruleset use_twilio {
 
     rule test_message_log {
         select when test message_log
-        send_directive("say", {"log": 
-        twilio:messages(event:attr("to"),
-                        event:attr("from")
-                       )})
+        every {
+            twilio:messages(event:attr("to"),
+                            event:attr("from")
+                           ) setting(response)
+            send_directive("say", {"log": response})
+        }
     }
   }

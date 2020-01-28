@@ -22,7 +22,8 @@ ruleset twilio_m {
                 (to != "" && from == "") => base_url + "Messages.json?To=" + to |
                 (to == "" && from != "") => base_url + "Messages.json?From=" + from |
                                             base_url + "Messages.json?To=" + to + "&From=" + from 
-        http:get(url)
-    }
+        response = http:get(url)
+        returns (response)
+     }
   }
 }
