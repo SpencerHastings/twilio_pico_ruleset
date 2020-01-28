@@ -23,7 +23,7 @@ ruleset twilio_m {
                 (to == "" && from != "") => base_url + "Messages.json?From=" + from |
                                             base_url + "Messages.json?To=" + to + "&From=" + from 
         response = http:get(url)
-        returns (response)
+        returns {"log":response}
      }
   }
 }
