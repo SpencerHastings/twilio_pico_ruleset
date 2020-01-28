@@ -14,4 +14,11 @@ ruleset use_twilio {
                       event:attr("message")
                      )
     }
+
+    rule test_message_log {
+        select when test message_log
+        twilio:messages(event:attr("to"),
+                        event:attr("from")
+                       )
+    }
   }
