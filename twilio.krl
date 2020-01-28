@@ -18,10 +18,10 @@ ruleset twilio_m {
     }
     messages = function(to, from) {
         base_url = <<https://#{account_sid}:#{auth_token}@api.twilio.com/2010-04-01/Accounts/#{account_sid}/>>
-        url =   (to == "" && from == "") => base_url + "Messages.json" |
-                (to != "" && from == "") => base_url + "Messages.json?To=" + to |
-                (to == "" && from != "") => base_url + "Messages.json?From=" + from |
-                                            base_url + "Messages.json?To=" + to + "&From=" + from 
+        url =   (to == "" && from == "") => base_url + "Messages.json?Page=0" |
+                (to != "" && from == "") => base_url + "Messages.json?To=" + to + "&Page=0"|
+                (to == "" && from != "") => base_url + "Messages.json?From=" + from + "&Page=0" |
+                                            base_url + "Messages.json?To=" + to + "&From=" + from + "&Page=0" 
         http:get(url)
      }
   }
