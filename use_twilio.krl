@@ -2,7 +2,7 @@
 ruleset use_twilio {
     meta {
       use module twilio_lesson_keys
-      use module twilio alias twilio
+      use module twilio_m alias twilio
           with account_sid = keys:twilio{"account_sid"}
                auth_token =  keys:twilio{"auth_token"}
     }
