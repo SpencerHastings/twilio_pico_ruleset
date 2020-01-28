@@ -16,14 +16,13 @@ ruleset twilio_m {
                 "Body":message
             })
     }
-    messages = defaction(to, from) {
+    messages = function(to, from) {
         base_url = <<https://#{account_sid}:#{auth_token}@api.twilio.com/2010-04-01/Accounts/#{account_sid}/>>
         url =   (to == "" && from == "") => base_url + "Messages.json" |
                 (to != "" && from == "") => base_url + "Messages.json?To=" + to |
                 (to == "" && from != "") => base_url + "Messages.json?From=" + from |
                                             base_url + "Messages.json?To=" + to + "&From=" + from 
-        response = http:get(url)
-        returns {"log":response}
+        http:get(url)
      }
   }
 }
